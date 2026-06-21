@@ -3,681 +3,1470 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Circle App – 14 Screens</title>
+<title>Cybernet – Wireframe User Flow</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:#171c1b;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  color:#1c2220;
-  padding:48px 24px 80px;
-}
-.board{
-  display:grid;
-  grid-template-columns:repeat(2,375px);
-  gap:56px 40px;
-  justify-content:center;
-  align-items:start;
-}
-.item{width:375px}
-.label{
-  color:rgba(255,255,255,.55);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.55px;
-  text-transform:uppercase;
-  margin:0 0 10px 8px;
-}
-.screen{
-  width:375px;
-  height:812px;
-  background:#f7f9f7;
-  border-radius:34px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  box-shadow:0 28px 70px rgba(0,0,0,.38);
-}
-.status{
-  height:44px;
-  flex:0 0 44px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 22px;
-  font-size:14px;
-  font-weight:700;
-}
-.status.dark{color:#fff}
-.battery{
-  width:21px;
-  height:10px;
-  border:1.5px solid currentColor;
-  border-radius:3px;
-  padding:2px;
-}
-.battery span{
-  display:block;
-  width:13px;
-  height:4px;
-  border-radius:1px;
-  background:currentColor;
-}
-.header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 20px 14px;
-}
-.title{
-  font-size:27px;
-  line-height:1.15;
-  font-weight:800;
-  letter-spacing:-.5px;
-}
-.subtitle{
-  font-size:13px;
-  line-height:1.45;
-  color:#6b7572;
-}
-.content{
-  flex:1;
-  padding:0 20px 18px;
-}
-.row{display:flex;align-items:center}
-.between{display:flex;align-items:center;justify-content:space-between}
-.stack{display:flex;flex-direction:column}
-.gap8{gap:8px}
-.gap10{gap:10px}
-.gap12{gap:12px}
-.gap14{gap:14px}
-.card{
-  background:#fff;
-  border:1px solid #e8ece9;
-  border-radius:18px;
-  padding:14px;
-}
-.soft{background:#f3faf7}
-.green{background:#1f5c49;color:#fff}
-.coral{background:#eb6b3a;color:#fff}
-.btn{
-  height:48px;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:15px;
-  font-weight:800;
-  padding:0 18px;
-}
-.btn.small{height:34px;font-size:12px;padding:0 14px}
-.btn.outline{background:#fff;color:#1f5c49;border:1px solid #cfe4db}
-.icon{
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;
-  border:1px solid #e8ece9;
-  font-size:18px;
-}
-.search{
-  height:45px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid #e8ece9;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:0 15px;
-  color:#8c958f;
-  font-size:14px;
-}
-.chip{
-  display:inline-flex;
-  align-items:center;
-  min-height:28px;
-  padding:0 11px;
-  border-radius:999px;
-  background:#e4f2ec;
-  color:#1f5c49;
-  font-size:11px;
-  font-weight:800;
-}
-.chip.coral-chip{background:#fce6da;color:#c7491f}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.avatar{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:12px;
-  font-weight:800;
-  border:2px solid #fff;
-}
-.a1{background:#5f8f7f}.a2{background:#d07a58}.a3{background:#7585aa}.a4{background:#9a6f8f}.a5{background:#718f55}
-.avatar-stack{display:flex}
-.avatar-stack .avatar{margin-left:-8px}
-.avatar-stack .avatar:first-child{margin-left:0}
-.section-title{
-  font-size:17px;
-  font-weight:800;
-  margin-bottom:10px;
-}
-.meta{font-size:11.5px;color:#6b7572;line-height:1.4}
-.tabs{
-  height:74px;
-  flex:0 0 74px;
-  background:#fff;
-  border-top:1px solid #e8ece9;
-  display:flex;
-  align-items:flex-start;
-  padding-top:8px;
-}
-.tab{
-  flex:1;
-  text-align:center;
-  color:#8c958f;
-  font-size:10px;
-  font-weight:700;
-}
-.tab b{
-  display:block;
-  font-size:20px;
-  line-height:25px;
-  margin-bottom:2px;
-}
-.tab.active{color:#1f5c49}
-.hero{
-  background:linear-gradient(160deg,#164336,#2a7a60);
-  color:#fff;
-}
-.hero-copy{text-align:center;padding:0 28px}
-.hero-copy h1{font-size:30px;line-height:1.18}
-.hero-copy p{font-size:15px;line-height:1.5;color:rgba(255,255,255,.8);margin-top:12px}
-.logo{
-  width:58px;height:58px;border-radius:18px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.14);
-  font-size:28px;margin:0 auto 18px;
-}
-.people{
-  height:300px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.people-grid{
-  width:220px;
-  display:grid;
-  grid-template-columns:repeat(3,64px);
-  gap:12px;
-  justify-content:center;
-}
-.face{
-  width:64px;height:64px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  border:3px solid rgba(255,255,255,.9);
-  color:#fff;font-weight:800;font-size:18px;
-}
-.face.big{width:78px;height:78px}
-.f1{background:#6d8f82}.f2{background:#b97057}.f3{background:#6f7ea3}.f4{background:#8d6984}.f5{background:#d85f36}
-.dots{display:flex;justify-content:center;gap:6px;margin-bottom:18px}
-.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3)}
-.dot.active{width:20px;border-radius:4px;background:#fff}
-.feature{
-  display:flex;
-  gap:14px;
-  align-items:flex-start;
-}
-.feature-icon{
-  width:46px;height:46px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;flex:0 0 46px;
-}
-.feature h3{font-size:15px;margin-bottom:4px}
-.feature p{font-size:12.5px;color:#6b7572;line-height:1.45}
-.progress{
-  height:4px;background:#e8ece9;border-radius:999px;overflow:hidden;
-}
-.progress span{display:block;height:100%;background:#2a7a60}
-.interest-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-  margin-top:18px;
-}
-.interest{
-  min-height:90px;
-  border-radius:14px;
-  border:1.5px solid #e3e8e5;
-  background:#fff;
-  padding:13px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.interest.selected{border-color:#2a7a60;background:#f3faf7}
-.interest span{font-size:23px}
-.interest b{font-size:13px;line-height:1.25}
-.field{margin-bottom:14px}
-.field label{
-  display:block;font-size:12px;font-weight:800;color:#3c4542;margin-bottom:6px;
-}
-.input{
-  min-height:46px;border-radius:13px;border:1.5px solid #dce2de;background:#fff;
-  display:flex;align-items:center;padding:0 14px;font-size:14px;
-}
-.textarea{height:76px;align-items:flex-start;padding-top:11px;line-height:1.4}
-.upload{
-  width:94px;height:94px;border-radius:50%;border:2px dashed #93ccb6;
-  background:#e4f2ec;display:flex;align-items:center;justify-content:center;
-  font-size:28px;margin:0 auto 18px;
-}
-.banner{
-  border-radius:18px;
-  padding:14px;
-  display:flex;
-  gap:12px;
-  background:linear-gradient(120deg,#eb6b3a,#dd5a2c);
-  color:#fff;
-}
-.banner h3{font-size:13.5px}
-.banner p{font-size:12px;line-height:1.4;color:rgba(255,255,255,.9);margin-top:3px}
-.quick{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px;
-}
-.quick .card{text-align:center;padding:12px 7px}
-.quick .symbol{font-size:22px;margin-bottom:6px}
-.quick b{font-size:10.5px;line-height:1.2}
-.activity{
-  display:flex;gap:12px;align-items:center;
-}
-.thumb{
-  width:58px;height:58px;border-radius:14px;flex:0 0 58px;
-  display:flex;align-items:center;justify-content:center;font-size:24px;
-}
-.activity h3{font-size:14px}
-.activity p{font-size:11.5px;color:#6b7572;margin-top:3px}
-.group-cover{
-  height:92px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:44px;margin-bottom:11px;
-}
-.cover-photo{background:linear-gradient(135deg,#dce9e3,#9fc1b2)}
-.cover-game{background:linear-gradient(135deg,#ded8e6,#8577a1)}
-.cover-book{background:linear-gradient(135deg,#eadccf,#c99565)}
-.chat-head{
-  display:flex;align-items:center;gap:10px;padding:8px 16px 12px;border-bottom:1px solid #e8ece9;
-}
-.chat-head .grow{flex:1}
-.chat-head h3{font-size:14.5px}
-.chat-head p{font-size:11px;color:#6b7572;margin-top:2px}
-.chat-body{
-  flex:1;padding:15px 16px;display:flex;flex-direction:column;gap:13px;
-}
-.day{text-align:center}
-.day span{font-size:10px;font-weight:800;color:#8c958f;background:#e8ece9;border-radius:999px;padding:4px 10px}
-.message{display:flex;gap:8px;max-width:84%}
-.message.mine{align-self:flex-end;flex-direction:row-reverse}
-.message .avatar{width:29px;height:29px;font-size:9px;flex:0 0 29px}
-.bubble{
-  background:#fff;border:1px solid #e8ece9;border-radius:15px 15px 15px 4px;
-  padding:9px 12px;font-size:13px;line-height:1.42;
-}
-.message.mine .bubble{background:#1f5c49;color:#fff;border:0;border-radius:15px 15px 4px 15px}
-.message time{display:block;font-size:9.5px;color:#8c958f;margin-top:3px}
-.chat-input{
-  height:58px;flex:0 0 58px;background:#fff;border-top:1px solid #e8ece9;
-  display:flex;align-items:center;gap:9px;padding:0 13px;
-}
-.fake-input{
-  flex:1;height:38px;border-radius:999px;background:#f7f9f7;border:1px solid #e8ece9;
-  display:flex;align-items:center;padding:0 14px;font-size:12.5px;color:#8c958f;
-}
-.circle{
-  width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-}
-.datebox{
-  width:48px;height:48px;border-radius:12px;background:#f3faf7;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;color:#1f5c49;
-}
-.datebox b{font-size:16px}.datebox span{font-size:9px;font-weight:800;text-transform:uppercase}
-.profile-top{
-  background:linear-gradient(160deg,#164336,#2a7a60);
-  color:#fff;padding-bottom:42px;
-}
-.identity{text-align:center;padding-top:5px}
-.identity .avatar{width:88px;height:88px;margin:0 auto;font-size:24px;border:3px solid rgba(255,255,255,.5)}
-.identity h2{font-size:20px;margin-top:11px}
-.identity p{font-size:12px;color:rgba(255,255,255,.78);margin-top:3px}
-.stats{
-  margin:-30px 20px 0;
-  display:flex;
-  position:relative;
-}
-.stat{flex:1;text-align:center;padding:14px 4px}
-.stat b{font-size:18px}
-.stat p{font-size:10px;color:#6b7572;margin-top:2px}
-.divider{width:1px;background:#e8ece9}
-.settings .card{padding:0;overflow:hidden}
-.setting{
-  height:50px;display:flex;align-items:center;gap:10px;padding:0 13px;border-bottom:1px solid #e8ece9;
-}
-.setting:last-child{border-bottom:0}
-.setting b{flex:1;font-size:12.5px}
-@media(max-width:850px){
-  .board{grid-template-columns:375px}
-}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    min-height: 100%;
+  }
+
+  body {
+    background: #f3f3f3;
+    color: #171717;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 36px;
+  }
+
+  .wireframe-board {
+    width: 1480px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 240px);
+    gap: 76px 54px;
+    align-items: start;
+  }
+
+  .frame {
+    width: 240px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .frame-label {
+    margin: 0 0 9px 6px;
+  }
+
+  .frame-label h2 {
+    font-size: 16px;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+
+  .frame-label p {
+    margin-top: 5px;
+    font-size: 8px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .phone {
+    width: 240px;
+    height: 520px;
+    background: #ffffff;
+    border: 1.5px solid #4f4f4f;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .statusbar {
+    height: 24px;
+    flex: 0 0 24px;
+    padding: 7px 13px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7px;
+    font-weight: 700;
+  }
+
+  .status-icons {
+    letter-spacing: 1px;
+  }
+
+  .screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 9px 14px 12px;
+    min-height: 0;
+  }
+
+  .topline {
+    min-height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .back,
+  .more,
+  .edit {
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border: 1px solid #b8b8b8;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    font-size: 10px;
+  }
+
+  .step {
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .wire-logo {
+    width: 58px;
+    height: 58px;
+    margin: 29px auto 12px;
+    border: 1px solid #9f9f9f;
+    border-radius: 8px;
+    background: #eeeeee;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    color: #4b4b4b;
+  }
+
+  .brand {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .tagline {
+    text-align: center;
+    margin-top: 7px;
+    font-size: 8px;
+    line-height: 1.5;
+    color: #575757;
+  }
+
+  .big-title {
+    margin-top: 38px;
+    font-size: 19px;
+    line-height: 1.18;
+    font-weight: 700;
+  }
+
+  .intro-copy {
+    margin-top: 14px;
+    font-size: 9px;
+    line-height: 1.55;
+    color: #444444;
+  }
+
+  .field {
+    height: 33px;
+    border: 1px solid #bcbcbc;
+    border-radius: 7px;
+    margin-top: 8px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #767676;
+    font-size: 8px;
+  }
+
+  .field-icon {
+    font-size: 10px;
+  }
+
+  .button {
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid #444444;
+    background: #333333;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+
+  .button.secondary {
+    background: #ffffff;
+    color: #222222;
+    border-color: #9d9d9d;
+  }
+
+  .button.small {
+    height: 24px;
+    margin-top: 0;
+    font-size: 8px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0 2px;
+    color: #777777;
+    font-size: 8px;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #dddddd;
+  }
+
+  .social-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .social {
+    height: 28px;
+    border: 1px solid #bfbfbf;
+    border-radius: 6px;
+    background: #eeeeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 8px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 18px;
+  }
+
+  .chip {
+    min-height: 24px;
+    padding: 0 9px;
+    border-radius: 999px;
+    border: 1px solid #bdbdbd;
+    background: #eeeeee;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+  }
+
+  .pager {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 13px;
+  }
+
+  .pager span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #cfcfcf;
+  }
+
+  .pager span.active {
+    background: #3d3d3d;
+  }
+
+  .avatar-large {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    border: 1px solid #919191;
+    background: #e8e8e8;
+    margin: 17px auto 10px;
+    position: relative;
+  }
+
+  .avatar-large .plus {
+    position: absolute;
+    right: -3px;
+    bottom: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid #969696;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+  }
+
+  .avatar-small {
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    border: 1px solid #9e9e9e;
+    background: #e5e5e5;
+    flex: 0 0 31px;
+  }
+
+  .profile-name {
+    height: 34px;
+    border: 1px solid #a9a9a9;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 9px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .helper {
+    margin-top: 5px;
+    color: #707070;
+    font-size: 7px;
+  }
+
+  .section-label {
+    margin-top: 17px;
+    margin-bottom: 7px;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .account-row,
+  .player-row,
+  .game-row {
+    min-height: 43px;
+    border: 1px solid #bdbdbd;
+    border-radius: 7px;
+    padding: 6px 7px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 7px;
+    background: #ffffff;
+  }
+
+  .account-icon,
+  .thumb {
+    width: 29px;
+    height: 29px;
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
+    background: #e6e6e6;
+    display: grid;
+    place-items: center;
+    font-size: 9px;
+    flex: 0 0 29px;
+  }
+
+  .row-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .row-copy strong {
+    display: block;
+    font-size: 9px;
+  }
+
+  .row-copy small {
+    display: block;
+    margin-top: 2px;
+    font-size: 6.5px;
+    color: #686868;
+  }
+
+  .connect {
+    min-width: 40px;
+    height: 20px;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: 6.5px;
+  }
+
+  .option {
+    min-height: 50px;
+    border: 1px solid #bbbbbb;
+    border-radius: 7px;
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    background: #ffffff;
+  }
+
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #989898;
+    border-radius: 4px;
+    background: #ffffff;
+    flex: 0 0 16px;
+    margin-top: 1px;
+  }
+
+  .option.checked {
+    background: #eeeeee;
+  }
+
+  .option.checked .checkbox {
+    background: #3b3b3b;
+    position: relative;
+  }
+
+  .option.checked .checkbox::after {
+    content: "✓";
+    color: #ffffff;
+    font-size: 10px;
+    position: absolute;
+    left: 3px;
+    top: 0;
+  }
+
+  .option strong {
+    display: block;
+    font-size: 9px;
+  }
+
+  .option small {
+    display: block;
+    margin-top: 3px;
+    font-size: 7px;
+    color: #6a6a6a;
+  }
+
+  .search {
+    height: 29px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    padding: 0 9px;
+    display: flex;
+    align-items: center;
+    color: #777777;
+    font-size: 8px;
+    margin-top: 12px;
+  }
+
+  .radio {
+    margin-left: auto;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #8c8c8c;
+    border-radius: 50%;
+    flex: 0 0 15px;
+  }
+
+  .radio.selected {
+    box-shadow: inset 0 0 0 4px #ffffff;
+    background: #343434;
+  }
+
+  .online-badge {
+    padding: 4px 7px;
+    border: 1px solid #8d8d8d;
+    border-radius: 999px;
+    font-size: 7px;
+  }
+
+  .center-name {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .center-sub {
+    text-align: center;
+    margin-top: 4px;
+    font-size: 8px;
+    color: #666666;
+  }
+
+  .info-box {
+    border: 1px solid #bbbbbb;
+    border-radius: 7px;
+    padding: 9px;
+    margin-top: 12px;
+  }
+
+  .info-box p {
+    font-size: 8px;
+    line-height: 1.5;
+  }
+
+  .playing-box {
+    min-height: 43px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .round-action {
+    text-align: center;
+    font-size: 7px;
+  }
+
+  .round-action span {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #8b8b8b;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .match-icon {
+    width: 76px;
+    height: 76px;
+    border: 1px solid #979797;
+    background: #eeeeee;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    margin: 17px auto 13px;
+  }
+
+  .match-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .match-sub {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .details {
+    border: 1px solid #b9b9b9;
+    border-radius: 7px;
+    padding: 10px;
+    margin-top: 15px;
+  }
+
+  .details h4 {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+    margin-bottom: 9px;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 8px;
+    margin-top: 7px;
+  }
+
+  .detail-row span:last-child {
+    text-align: right;
+    font-weight: 700;
+  }
+
+  .chat-title {
+    flex: 1;
+    text-align: center;
+  }
+
+  .chat-title strong {
+    display: block;
+    font-size: 10px;
+  }
+
+  .chat-title small {
+    display: block;
+    font-size: 6.5px;
+    margin-top: 2px;
+  }
+
+  .messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 15px;
+  }
+
+  .message {
+    max-width: 78%;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .message.mine {
+    align-self: flex-end;
+    align-items: flex-end;
+  }
+
+  .bubble {
+    border: 1px solid #bebebe;
+    border-radius: 7px;
+    background: #eeeeee;
+    padding: 9px;
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .message.mine .bubble {
+    background: #ffffff;
+  }
+
+  .time {
+    font-size: 6.5px;
+    color: #777777;
+  }
+
+  .composer {
+    height: 32px;
+    border: 1px solid #bdbdbd;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    color: #777777;
+    font-size: 8px;
+    margin-top: 9px;
+  }
+
+  .send {
+    margin-left: auto;
+    font-size: 13px;
+  }
+
+  .list-title {
+    margin-top: 13px;
+    margin-bottom: 5px;
+    font-size: 7px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .player-row {
+    min-height: 48px;
+  }
+
+  .plus-square {
+    width: 21px;
+    height: 21px;
+    border: 1px solid #9d9d9d;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+  }
+
+  .mini-chips {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .mini-chip {
+    padding: 2px 5px;
+    border-radius: 999px;
+    background: #e7e7e7;
+    border: 1px solid #c9c9c9;
+    font-size: 5.5px;
+  }
+
+  .trending-row {
+    display: flex;
+    align-items: center;
+    min-height: 36px;
+    border-bottom: 1px solid #dedede;
+  }
+
+  .trending-row:last-child {
+    border-bottom: 0;
+  }
+
+  .trending-row .row-copy strong {
+    font-size: 8px;
+  }
+
+  .trending-row .chevron {
+    margin-left: auto;
+    font-size: 14px;
+  }
+
+  .bottom-nav {
+    height: 44px;
+    flex: 0 0 44px;
+    border-top: 1px solid #c7c7c7;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    background: #ffffff;
+  }
+
+  .nav-item {
+    text-align: center;
+    font-size: 6px;
+  }
+
+  .nav-item b {
+    display: block;
+    font-size: 11px;
+    line-height: 14px;
+  }
+
+  .user-avatar {
+    width: 75px;
+    height: 75px;
+    border: 1px solid #999999;
+    border-radius: 50%;
+    background: #e8e8e8;
+    margin: 17px auto 9px;
+  }
+
+  .level-line {
+    width: 118px;
+    height: 5px;
+    background: #dddddd;
+    border-radius: 999px;
+    margin: 12px auto 5px;
+    overflow: hidden;
+  }
+
+  .level-line span {
+    display: block;
+    width: 58%;
+    height: 100%;
+    background: #444444;
+  }
+
+  .xp {
+    text-align: center;
+    font-size: 6.5px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-top: 7px;
+  }
+
+  .stat {
+    min-height: 47px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    text-align: center;
+    padding: 8px 3px;
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 12px;
+  }
+
+  .stat small {
+    display: block;
+    font-size: 6px;
+    margin-top: 3px;
+  }
+
+  .badges {
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #a8a8a8;
+    background: #e6e6e6;
+  }
+
+  .badge-more {
+    margin-left: auto;
+    width: 20px;
+    height: 28px;
+    border-left: 1px solid #c6c6c6;
+    display: grid;
+    place-items: center;
+  }
+
+  .about {
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    min-height: 54px;
+    padding: 9px;
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .profile-tags {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 9px;
+  }
+
+  .profile-tags span {
+    padding: 4px 7px;
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
+    background: #eeeeee;
+    font-size: 6.5px;
+  }
+
+  .frame-11 {
+    grid-column: 3;
+  }
+
+  .flow-arrow {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .arrow-top {
+    left: 243px;
+    top: 224px;
+    width: 54px;
+    height: 38px;
+  }
+
+  .arrow-long {
+    left: 50px;
+    top: 548px;
+    width: 1340px;
+    height: 100px;
+  }
+
+  .arrow-down {
+    left: 720px;
+    top: 1130px;
+    width: 60px;
+    height: 90px;
+  }
+
+  .flow-arrow path,
+  .flow-arrow line {
+    stroke: #252525;
+    stroke-width: 2.4;
+    fill: none;
+  }
+
+  .flow-arrow polygon {
+    fill: #252525;
+  }
+
+  @media (max-width: 1500px) {
+    body {
+      overflow-x: auto;
+    }
+  }
 </style>
 </head>
 <body>
-<div class="board">
 
-<section class="item">
-  <div class="label">01 · Onboarding — Willkommen</div>
-  <div class="screen hero">
-    <div class="status dark"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="people">
-      <div class="people-grid">
-        <div class="face f1">MH</div><div class="face f2">SK</div><div class="face f3">TW</div>
-        <div class="face f4">LK</div><div class="face f5">♥</div><div class="face f1">JP</div>
+<div class="wireframe-board">
+
+  <svg class="flow-arrow arrow-top" viewBox="0 0 54 38" aria-hidden="true">
+    <line x1="2" y1="19" x2="43" y2="19"></line>
+    <polygon points="43,12 53,19 43,26"></polygon>
+  </svg>
+
+  <svg class="flow-arrow arrow-long" viewBox="0 0 1340 100" aria-hidden="true">
+    <path d="M1280 0 C1280 52 1235 62 1160 62 H90 C42 62 18 74 18 98"></path>
+    <polygon points="10,87 18,99 26,87"></polygon>
+  </svg>
+
+  <svg class="flow-arrow arrow-down" viewBox="0 0 60 90" aria-hidden="true">
+    <line x1="30" y1="0" x2="30" y2="76"></line>
+    <polygon points="21,66 30,88 39,66"></polygon>
+  </svg>
+
+  <main class="flow-grid">
+
+    <!-- FRAME 1 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 1</h2>
+        <p>Login</p>
       </div>
-    </div>
-    <div class="hero-copy">
-      <div class="logo">◉</div>
-      <h1>Willkommen bei<br>Circle</h1>
-      <p>Lerne Menschen kennen, die deine Interessen teilen — bei echten Aktivitäten, nicht beim Wischen.</p>
-    </div>
-    <div style="margin-top:auto;padding:26px 24px 36px">
-      <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-      <div class="btn" style="background:#fff;color:#164336">Los geht's</div>
-      <div style="text-align:center;font-size:12px;font-weight:700;color:rgba(255,255,255,.68);margin-top:12px">Ich habe bereits ein Konto</div>
-    </div>
-  </div>
-</section>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <div class="wire-logo">LOGO</div>
+          <div class="brand">Cybernet</div>
+          <div class="tagline">Find teammates. Play together.<br>Win together.</div>
 
-<section class="item">
-  <div class="label">02 · Onboarding — Intro</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="between" style="padding:10px 20px 0"><span></span><b class="subtitle">Überspringen</b></div>
-    <div style="padding:16px 24px 0">
-      <div style="font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#dd5a2c">So funktioniert Circle</div>
-      <h1 class="title" style="font-size:24px;margin-top:7px">Drei Schritte zu echten Freundschaften.</h1>
-    </div>
-    <div class="content stack gap12" style="padding-top:22px">
-      <div class="card feature"><div class="feature-icon soft">👥</div><div><h3>Tritt einer Gruppe bei</h3><p>Finde Menschen mit deinen Interessen — von Fotografie bis Brettspiele.</p></div></div>
-      <div class="card feature"><div class="feature-icon" style="background:#fce6da">📅</div><div><h3>Nimm an Aktivitäten teil</h3><p>Café-Treffen, Spaziergänge und Spieleabende an echten Orten.</p></div></div>
-      <div class="card feature"><div class="feature-icon soft">♥</div><div><h3>Lerne neue Freunde kennen</h3><p>Speichere Kontakte nach dem Treffen und bleibt verbunden.</p></div></div>
-    </div>
-    <div style="padding:18px 24px 34px">
-      <div class="btn coral">Weiter</div>
-    </div>
-  </div>
-</section>
-
-<section class="item">
-  <div class="label">03 · Onboarding — Interessen</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="between" style="padding:8px 20px 0"><div class="icon">‹</div><b class="subtitle">Schritt 3 von 5</b></div>
-    <div style="padding:12px 20px 0"><div class="progress"><span style="width:60%"></span></div></div>
-    <div style="padding:18px 20px 0">
-      <h1 class="title" style="font-size:24px">Was interessiert dich?</h1>
-      <p class="subtitle" style="margin-top:5px">Wähle mindestens 3 Interessen — wir zeigen dir passende Gruppen und Aktivitäten.</p>
-    </div>
-    <div class="content">
-      <div class="interest-grid">
-        <div class="interest selected"><span>📷</span><b>Fotografie & Spaziergänge</b></div>
-        <div class="interest"><span>🎮</span><b>Gaming Community</b></div>
-        <div class="interest selected"><span>📚</span><b>Bücherclub</b></div>
-        <div class="interest"><span>🏋️</span><b>Fitness Buddies</b></div>
-        <div class="interest selected"><span>☕</span><b>Café & Lernen</b></div>
-        <div class="interest"><span>🎲</span><b>Brettspielabend</b></div>
-        <div class="interest"><span>🍳</span><b>Kochen & Backen</b></div>
-        <div class="interest"><span>🎨</span><b>Kunst & Kreativität</b></div>
+          <div style="margin-top:32px">
+            <div class="field"><span class="field-icon">♙</span><span>E-Mail oder Benutzername</span></div>
+            <div class="field"><span class="field-icon">▣</span><span>Passwort</span></div>
+            <div class="button">Einloggen</div>
+            <div class="divider">oder</div>
+            <div class="button secondary">Account erstellen</div>
+            <div class="social-row">
+              <div class="social">◉ Discord</div>
+              <div class="social">● Steam</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div style="padding:12px 20px 32px;border-top:1px solid #e8ece9">
-      <div style="text-align:center;font-size:12px;color:#6b7572;font-weight:700;margin-bottom:9px">3 Interessen ausgewählt</div>
-      <div class="btn coral">Weiter</div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="item">
-  <div class="label">04 · Onboarding — Profil erstellen</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="between" style="padding:8px 20px 0"><div class="icon">‹</div><b class="subtitle">Schritt 5 von 5</b></div>
-    <div style="padding:12px 20px 0"><div class="progress"><span style="width:90%"></span></div></div>
-    <div style="padding:18px 20px 0">
-      <h1 class="title" style="font-size:24px">Erstelle dein Profil</h1>
-      <p class="subtitle" style="margin-top:5px">So lernen dich andere Mitglieder vor dem Treffen kennen.</p>
-    </div>
-    <div class="content" style="padding-top:18px">
-      <div class="upload">📷</div>
-      <div class="field"><label>Name</label><div class="input">Mia Hoffmann</div></div>
-      <div class="field"><label>Alter</label><div class="input">27</div></div>
-      <div class="field"><label>Über mich</label><div class="input textarea">Lernbegeisterte Designstudentin auf der Suche nach Café-Buddies und Buchclub-Freunden ☕📚</div></div>
-      <div class="field"><label>Deine Interessen</label><div class="chips"><span class="chip">📷 Fotografie</span><span class="chip">📚 Bücherclub</span><span class="chip">☕ Café</span></div></div>
-    </div>
-    <div style="padding:12px 24px 32px;border-top:1px solid #e8ece9"><div class="btn coral">Profil erstellen</div></div>
-  </div>
-</section>
-
-<section class="item">
-  <div class="label">05 · Home</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="header"><div><p class="subtitle" style="font-weight:700">Guten Morgen 👋</p><h1 class="title" style="font-size:22px;margin-top:2px">Mia Hoffmann</h1></div><div class="icon">🔔</div></div>
-    <div style="padding:0 20px 14px"><div class="search">⌕ Gruppen, Aktivitäten suchen…</div></div>
-    <div class="content">
-      <div class="banner"><div style="font-size:22px">⚡</div><div><h3>Spontane Aktivität in deiner Nähe!</h3><p>„Abendspaziergang am See“ startet heute in 2 Stunden.</p></div></div>
-      <div class="quick">
-        <div class="card"><div class="symbol">＋</div><b>Aktivität erstellen</b></div>
-        <div class="card"><div class="symbol">👥</div><b>Gruppen finden</b></div>
-        <div class="card"><div class="symbol">💬</div><b>Meine Chats</b></div>
+    <!-- FRAME 2 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 2</h2>
+        <p>Welcome / Start</p>
       </div>
-      <div class="between" style="margin:20px 0 10px"><h2 class="section-title" style="margin:0">Aktivitäten für dich</h2><span style="font-size:11px;color:#1f5c49;font-weight:800">Alle ansehen</span></div>
-      <div class="card activity"><div class="thumb cover-book">☕</div><div style="flex:1"><h3>Café & Lernen</h3><p>Heute, 16:00 · Bücherei-Café</p><div class="between" style="margin-top:8px"><div class="avatar-stack"><div class="avatar a1">SK</div><div class="avatar a2">JP</div><div class="avatar a3">AM</div></div><span class="chip">5/8</span></div></div></div>
-      <div class="between" style="margin:18px 0 10px"><h2 class="section-title" style="margin:0">Gruppen für dich</h2><span style="font-size:11px;color:#1f5c49;font-weight:800">Alle ansehen</span></div>
-      <div class="card activity"><div class="thumb cover-photo">📷</div><div style="flex:1"><h3>Fotografie & Spaziergänge</h3><p>312 Mitglieder · 3 Aktivitäten</p></div><div class="btn small green">Beitreten</div></div>
-    </div>
-    <div class="tabs"><div class="tab active"><b>⌂</b>Home</div><div class="tab"><b>👥</b>Gruppen</div><div class="tab"><b>□</b>Aktivitäten</div><div class="tab"><b>♡</b>Kontakte</div><div class="tab"><b>○</b>Profil</div></div>
-  </div>
-</section>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <h1 class="big-title">Finde Spieler, die zu dir passen</h1>
+          <p class="intro-copy">
+            Sag uns, was du gerne spielst und wie du spielen möchtest.
+            Wir bringen dich mit passenden Gamern zusammen.
+          </p>
 
-<section class="item">
-  <div class="label">06 · Gruppenübersicht</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="header"><h1 class="title">Gruppen</h1><div class="icon">＋</div></div>
-    <div style="padding:0 20px 12px"><div class="search">⌕ Gruppen durchsuchen…</div></div>
-    <div class="chips" style="padding:0 20px 14px"><span class="chip" style="background:#1f5c49;color:#fff">Alle</span><span class="chip">📷 Fotografie</span><span class="chip">🎮 Gaming</span><span class="chip">📚 Bücher</span></div>
-    <div class="content stack gap12">
-      <div class="subtitle" style="font-weight:700">38 Gruppen in deiner Nähe</div>
-      <div class="card">
-        <div class="group-cover cover-photo">📷</div>
-        <h3 style="font-size:15px">Fotografie & Spaziergänge</h3>
-        <p class="subtitle" style="margin-top:4px">Für alle, die gerne mit der Kamera unterwegs sind.</p>
-        <div class="between" style="margin-top:10px"><span class="meta">312 Mitglieder</span><div class="btn small green">Beitreten</div></div>
+          <div class="chips">
+            <span class="chip">Competitive</span>
+            <span class="chip">Casual</span>
+            <span class="chip">Chill</span>
+            <span class="chip">Teamplay</span>
+            <span class="chip">Voice Chat</span>
+          </div>
+
+          <div style="margin-top:auto">
+            <div class="button">Quest beginnen</div>
+            <div class="pager">
+              <span class="active"></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="group-cover cover-game">🎮</div>
-        <h3 style="font-size:15px">Gaming Community</h3>
-        <p class="subtitle" style="margin-top:4px">Brett-, Konsolen- und PC-Spiele gemeinsam erleben.</p>
-        <div class="between" style="margin-top:10px"><span class="meta">271 Mitglieder</span><div class="btn small green">Beitreten</div></div>
+    </section>
+
+    <!-- FRAME 3 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 3</h2>
+        <p>Gamer-Profil / Setup</p>
       </div>
-    </div>
-    <div class="tabs"><div class="tab"><b>⌂</b>Home</div><div class="tab active"><b>👥</b>Gruppen</div><div class="tab"><b>□</b>Aktivitäten</div><div class="tab"><b>♡</b>Kontakte</div><div class="tab"><b>○</b>Profil</div></div>
-  </div>
-</section>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <div class="topline">
+            <span class="back">‹</span>
+            <span class="step">2/4</span>
+          </div>
 
-<section class="item">
-  <div class="label">07 · Gruppenprofil</div>
-  <div class="screen">
-    <div class="green" style="height:190px;padding:52px 16px 0">
-      <div class="between"><div class="icon">‹</div><div class="icon">⋮</div></div>
-      <div style="text-align:center;font-size:56px;margin-top:12px">📷</div>
-    </div>
-    <div class="content">
-      <div class="card" style="margin-top:-30px">
-        <span class="chip">📷 Fotografie</span>
-        <h1 class="title" style="font-size:20px;margin-top:8px">Fotografie & Spaziergänge</h1>
-        <p class="subtitle" style="margin-top:5px">312 Mitglieder · 12 online</p>
-        <div class="row gap8" style="margin-top:13px"><div class="btn coral" style="flex:1;height:44px">Gruppe beigetreten ✓</div><div class="icon">💬</div></div>
+          <div class="avatar-large"><span class="plus">+</span></div>
+          <div class="profile-name">xShadow_99</div>
+          <div class="helper">Das wird dein öffentlicher Name.</div>
+
+          <div class="section-label">Accounts verbinden</div>
+
+          <div class="account-row">
+            <div class="account-icon">S</div>
+            <div class="row-copy">
+              <strong>Steam</strong>
+              <small>Steam-Account verbinden</small>
+            </div>
+            <div class="connect">Sync</div>
+          </div>
+
+          <div class="account-row">
+            <div class="account-icon">PS</div>
+            <div class="row-copy">
+              <strong>PlayStation</strong>
+              <small>PSN-Account verbinden</small>
+            </div>
+            <div class="connect">Verbinden</div>
+          </div>
+
+          <div class="account-row">
+            <div class="account-icon">D</div>
+            <div class="row-copy">
+              <strong>Discord</strong>
+              <small>Discord verbinden</small>
+            </div>
+            <div class="connect">Aktiv</div>
+          </div>
+
+          <div class="button" style="margin-top:auto">Weiter</div>
+        </div>
       </div>
-      <div style="margin-top:18px"><h2 class="section-title">Über die Gruppe</h2><p class="subtitle">Für alle, die gerne mit der Kamera unterwegs sind. Wir treffen uns zu Fotospaziergängen und entdecken neue Orte.</p></div>
-      <div style="margin-top:18px"><h2 class="section-title">Aktivitäten der Gruppe</h2>
-        <div class="card activity" style="margin-bottom:9px"><div class="datebox"><b>22</b><span>Jun</span></div><div><h3>Fotospaziergang</h3><p>14:00 · Stadtpark Nord</p></div></div>
-        <div class="card activity"><div class="datebox"><b>28</b><span>Jun</span></div><div><h3>Goldene-Stunde-Shooting</h3><p>19:30 · 3/8 Teilnehmer</p></div></div>
+    </section>
+
+    <!-- FRAME 4 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 4</h2>
+        <p>Nächstes Match</p>
       </div>
-      <div style="margin-top:18px"><h2 class="section-title">Gruppenchat</h2><div class="card"><div class="message" style="max-width:100%"><div class="avatar a3">TW</div><div class="bubble">Wer ist am Samstag beim Fotospaziergang dabei? 📸</div></div></div></div>
-    </div>
-    <div class="tabs"><div class="tab"><b>⌂</b>Home</div><div class="tab active"><b>👥</b>Gruppen</div><div class="tab"><b>□</b>Aktivitäten</div><div class="tab"><b>♡</b>Kontakte</div><div class="tab"><b>○</b>Profil</div></div>
-  </div>
-</section>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <div class="topline">
+            <span class="back">‹</span>
+            <span class="step">3/4</span>
+          </div>
 
-<section class="item">
-  <div class="label">08 · Gruppenchat</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="chat-head"><div class="icon">‹</div><div class="avatar a1">📷</div><div class="grow"><h3>Fotografie & Spaziergänge</h3><p>312 Mitglieder · 12 online</p></div><div class="icon">⋮</div></div>
-    <div class="chat-body">
-      <div class="day"><span>Heute</span></div>
-      <div class="message"><div class="avatar a3">TW</div><div><div class="bubble">Wer ist am Samstag beim Fotospaziergang dabei? 📸</div><time>10:14</time></div></div>
-      <div class="message"><div class="avatar a4">LK</div><div><div class="bubble">Ich bin dabei! Bringe mein neues Objektiv mit 😊</div><time>10:16</time></div></div>
-      <div class="message mine"><div><div class="bubble">Super, bin auch dabei! Treffpunkt am Eingang Nord? 🌳</div><time>10:22</time></div></div>
-      <div class="message"><div class="avatar a3">TW</div><div><div class="bubble">Genau, 14 Uhr am Haupteingang. Bis Samstag! 👋</div><time>10:25</time></div></div>
-    </div>
-    <div class="chat-input"><div class="circle soft">＋</div><div class="fake-input">Nachricht schreiben…</div><div class="circle coral">➜</div></div>
-  </div>
-</section>
+          <h1 class="big-title" style="margin-top:20px">Was soll dein nächstes Match können?</h1>
+          <p class="intro-copy" style="margin-top:8px">
+            Die App trennt Casual, Ranked und Session-Ziele, damit nichts zufällig gematcht wird.
+          </p>
 
-<section class="item">
-  <div class="label">09 · Aktivitätenübersicht</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="header"><h1 class="title">Aktivitäten</h1><div class="icon">☰</div></div>
-    <div style="padding:0 20px 12px"><div class="search">⌕ Aktivitäten durchsuchen…</div></div>
-    <div class="chips" style="padding:0 20px 14px"><span class="chip" style="background:#1f5c49;color:#fff">Alle</span><span class="chip">Heute</span><span class="chip">Diese Woche</span></div>
-    <div class="content">
-      <h2 class="section-title" style="font-size:11px;color:#8c958f;text-transform:uppercase;letter-spacing:.5px">Heute</h2>
-      <div class="card activity" style="margin-bottom:10px"><div class="datebox"><b>16:00</b><span>Uhr</span></div><div style="flex:1"><h3>Café & Lernen</h3><p>📍 Bücherei-Café, Mitte</p><div class="between" style="margin-top:8px"><div class="avatar-stack"><div class="avatar a1">SK</div><div class="avatar a2">JP</div></div><span class="chip">5/8 Plätze</span></div></div></div>
-      <div class="card activity" style="margin-bottom:17px"><div class="datebox"><b>19:00</b><span>Uhr</span></div><div style="flex:1"><h3>Abendspaziergang am See</h3><p>📍 Weißer See</p><div class="between" style="margin-top:8px"><div class="avatar-stack"><div class="avatar a3">TW</div><div class="avatar a4">LK</div></div><span class="chip coral-chip">4 Plätze</span></div></div></div>
-      <h2 class="section-title" style="font-size:11px;color:#8c958f;text-transform:uppercase;letter-spacing:.5px">Samstag, 21. Juni</h2>
-      <div class="card activity"><div class="datebox"><b>14:00</b><span>Uhr</span></div><div style="flex:1"><h3>Fotospaziergang</h3><p>📍 Stadtpark Nord</p><div class="between" style="margin-top:8px"><div class="avatar-stack"><div class="avatar a3">TW</div><div class="avatar a4">LK</div></div><span class="chip">6/10 Plätze</span></div></div></div>
-    </div>
-    <div class="tabs"><div class="tab"><b>⌂</b>Home</div><div class="tab"><b>👥</b>Gruppen</div><div class="tab active"><b>□</b>Aktivitäten</div><div class="tab"><b>♡</b>Kontakte</div><div class="tab"><b>○</b>Profil</div></div>
-  </div>
-</section>
+          <div class="option checked">
+            <span class="checkbox"></span>
+            <div>
+              <strong>Duo Ranked</strong>
+              <small>Kompetitiv, ähnliche Elo, Voice bevorzugt.</small>
+            </div>
+          </div>
 
-<section class="item">
-  <div class="label">10 · Aktivitätsdetails</div>
-  <div class="screen">
-    <div class="green" style="height:210px;padding:52px 16px 0">
-      <div class="between"><div class="icon">‹</div><div class="icon">♡</div></div>
-      <div style="text-align:center;font-size:64px;margin-top:14px">☕</div>
-    </div>
-    <div class="content">
-      <div class="card" style="margin-top:-30px">
-        <div class="chips"><span class="chip">📚 Bücherclub</span><span class="chip coral-chip">Heute</span></div>
-        <h1 class="title" style="font-size:20px;margin-top:9px">Café & Lernen</h1>
-        <div class="activity" style="margin-top:13px"><div class="thumb soft" style="width:36px;height:36px;flex-basis:36px;font-size:16px">◷</div><div><h3>Heute, 16:00 – 18:00 Uhr</h3><p>Dauer ca. 2 Stunden</p></div></div>
-        <div class="activity" style="margin-top:10px"><div class="thumb soft" style="width:36px;height:36px;flex-basis:36px;font-size:16px">⌖</div><div><h3>Bücherei-Café, Mitte</h3><p>Dorotheenstraße 12 · 1,2 km entfernt</p></div></div>
+          <div class="option">
+            <span class="checkbox"></span>
+            <div>
+              <strong>Casual Squad</strong>
+              <small>Entspannt, Spaß, kein Tilt.</small>
+            </div>
+          </div>
+
+          <div class="option">
+            <span class="checkbox"></span>
+            <div>
+              <strong>Raid / Co-op</strong>
+              <small>Rollen, Boss-Fights und feste Zeiten.</small>
+            </div>
+          </div>
+
+          <div class="button" style="margin-top:auto">Weiter</div>
+        </div>
       </div>
-      <div style="margin-top:18px"><h2 class="section-title">Beschreibung</h2><p class="subtitle">Gemeinsam lernen statt allein zuhause. Wir treffen uns zum konzentrierten Arbeiten — mit Pausen für Austausch und Kaffee.</p></div>
-      <div style="margin-top:18px"><h2 class="section-title">Organisiert von</h2><div class="card activity"><div class="avatar a1">SK</div><div><h3>Sarah Klein</h3><p>Mitglied seit 8 Monaten · 14 Aktivitäten</p></div></div></div>
-      <div style="margin-top:18px"><h2 class="section-title">Ort</h2><div class="soft" style="height:112px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:34px">📍</div></div>
-    </div>
-    <div style="height:74px;flex:0 0 74px;padding:10px 20px 18px;background:#fff;border-top:1px solid #e8ece9;display:flex;align-items:center;gap:12px"><div><b style="color:#1f5c49">5/8</b><div class="meta">Plätze</div></div><div class="btn coral" style="flex:1">Jetzt teilnehmen</div></div>
-  </div>
-</section>
+    </section>
 
-<section class="item">
-  <div class="label">11 · Aktivitätschat</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="chat-head"><div class="icon">‹</div><div class="avatar a2">☕</div><div class="grow"><h3>Café & Lernen</h3><p>5 Teilnehmer</p></div><div class="icon">⋮</div></div>
-    <div class="green" style="margin:10px 16px 0;border-radius:14px;padding:11px 13px"><b style="font-size:12px">📍 Heute, 16:00 Uhr · Bücherei-Café</b><div style="font-size:10.5px;color:rgba(255,255,255,.75);margin-top:2px">Dorotheenstraße 12, Berlin-Mitte</div></div>
-    <div class="chat-body">
-      <div class="day"><span>Heute</span></div>
-      <div class="message"><div class="avatar a1">SK</div><div><div class="bubble">Hey zusammen! Freue mich auf heute 😊 Ich sitze meist am Tisch hinten links.</div><time>11:02</time></div></div>
-      <div class="message mine"><div><div class="bubble">Hi! Bin auch gespannt, bringe meine Statistik-Unterlagen mit 📊</div><time>11:14</time></div></div>
-      <div class="message"><div class="avatar a2">JP</div><div><div class="bubble">Perfekt, ich brauche auch Lerngesellschaft fürs Examen 🙌</div><time>11:20</time></div></div>
-    </div>
-    <div class="chat-input"><div class="circle soft">＋</div><div class="fake-input">Nachricht schreiben…</div><div class="circle coral">➜</div></div>
-  </div>
-</section>
-
-<section class="item">
-  <div class="label">12 · Kontakte</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="header"><h1 class="title">Kontakte</h1></div>
-    <div style="padding:0 20px 14px"><div class="search">⌕ Kontakte durchsuchen…</div></div>
-    <div class="content">
-      <h2 class="section-title" style="margin-bottom:3px">Neu kennengelernt 🎉</h2>
-      <p class="subtitle">Nach „Café & Lernen“ — jetzt als Kontakt speichern</p>
-      <div class="row gap10" style="margin-top:12px">
-        <div class="card" style="width:104px;text-align:center;padding:11px"><div class="avatar a1" style="margin:0 auto 7px">SK</div><b style="font-size:11.5px">Sarah</b><div class="btn small coral" style="margin-top:8px">Speichern</div></div>
-        <div class="card" style="width:104px;text-align:center;padding:11px"><div class="avatar a2" style="margin:0 auto 7px">JP</div><b style="font-size:11.5px">Jonas</b><div class="btn small coral" style="margin-top:8px">Speichern</div></div>
-        <div class="card" style="width:104px;text-align:center;padding:11px"><div class="avatar a3" style="margin:0 auto 7px">AM</div><b style="font-size:11.5px">Anna</b><div class="btn small coral" style="margin-top:8px">Speichern</div></div>
+    <!-- FRAME 5 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 5</h2>
+        <p>Game auswählen</p>
       </div>
-      <div class="between" style="margin:19px 0 8px"><h2 class="section-title" style="margin:0">Meine Freunde</h2><span class="chip">24</span></div>
-      <div class="stack">
-        <div class="activity" style="padding:10px 0;border-bottom:1px solid #e8ece9"><div class="avatar a4">AB</div><div style="flex:1"><h3>Anna Bergmann</h3><p>Bücherclub · vor 2 Wochen</p></div><div class="circle soft">💬</div></div>
-        <div class="activity" style="padding:10px 0;border-bottom:1px solid #e8ece9"><div class="avatar a5">LS</div><div style="flex:1"><h3>Lukas Schmidt</h3><p>Brettspielabend · vor 1 Monat</p></div><div class="circle soft">💬</div></div>
-        <div class="activity" style="padding:10px 0"><div class="avatar a3">TW</div><div style="flex:1"><h3>Tom Weber</h3><p>Fotospaziergang · vor 3 Tagen</p></div><div class="circle soft">💬</div></div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <div class="topline">
+            <span class="back">‹</span>
+            <span class="step">4/4</span>
+          </div>
+
+          <h1 class="big-title" style="margin-top:18px">Wähle genau ein Game aus</h1>
+          <div class="search">⌕ Game suchen</div>
+
+          <div class="game-row">
+            <div class="thumb"></div>
+            <div class="row-copy"><strong>Valorant</strong><small>Tactical Shooter</small></div>
+            <span class="radio"></span>
+          </div>
+
+          <div class="game-row">
+            <div class="thumb"></div>
+            <div class="row-copy"><strong>Black Ops 7</strong><small>Ego-Shooter</small></div>
+            <span class="radio"></span>
+          </div>
+
+          <div class="game-row">
+            <div class="thumb"></div>
+            <div class="row-copy"><strong>League of Legends</strong><small>MOBA</small></div>
+            <span class="radio selected"></span>
+          </div>
+
+          <div class="game-row">
+            <div class="thumb"></div>
+            <div class="row-copy"><strong>Fortnite</strong><small>Battle Royale</small></div>
+            <span class="radio"></span>
+          </div>
+
+          <div class="button" style="margin-top:auto">Match finden</div>
+        </div>
       </div>
-    </div>
-    <div class="tabs"><div class="tab"><b>⌂</b>Home</div><div class="tab"><b>👥</b>Gruppen</div><div class="tab"><b>□</b>Aktivitäten</div><div class="tab active"><b>♡</b>Kontakte</div><div class="tab"><b>○</b>Profil</div></div>
-  </div>
-</section>
+    </section>
 
-<section class="item">
-  <div class="label">13 · Privatchat</div>
-  <div class="screen">
-    <div class="status"><span>9:41</span><div class="battery"><span></span></div></div>
-    <div class="chat-head"><div class="icon">‹</div><div class="avatar a1">SK</div><div class="grow"><h3>Sarah Klein</h3><p style="color:#2a7a60;font-weight:700">Online</p></div><div class="icon">⋮</div></div>
-    <div class="soft" style="margin:10px 16px 0;border-radius:13px;padding:9px 12px;font-size:11px;font-weight:700;color:#1f5c49">♡ Befreundet seit „Café & Lernen“ · Heute</div>
-    <div class="chat-body">
-      <div class="day"><span>Heute</span></div>
-      <div class="message"><div class="avatar a1">SK</div><div><div class="bubble">Hey Mia! War super nett heute beim Lernen 😊 Sollen wir nächste Woche wieder zusammen lernen?</div><time>18:32</time></div></div>
-      <div class="message mine"><div><div class="bubble">Auf jeden Fall! Hat richtig Spaß gemacht, war viel produktiver als allein 📚</div><time>18:34 · Gelesen</time></div></div>
-      <div class="message mine"><div><div class="bubble">Gleicher Ort, gleiche Zeit nächsten Donnerstag?</div><time>18:34 · Gelesen</time></div></div>
-      <div class="message"><div class="avatar a1">SK</div><div><div class="bubble">Perfekt, ich erstelle die Aktivität gleich in der App 🙌</div><time>18:36</time></div></div>
-    </div>
-    <div class="chat-input"><div class="circle soft">＋</div><div class="fake-input">Nachricht schreiben…</div><div class="circle coral">➜</div></div>
-  </div>
-</section>
+    <!-- FRAME 6 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 6</h2>
+        <p>Match Player Card</p>
+      </div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <div class="topline">
+            <span></span>
+            <span class="online-badge">Online</span>
+          </div>
 
-<section class="item">
-  <div class="label">14 · Profilseite</div>
-  <div class="screen">
-    <div class="profile-top">
-      <div class="status dark"><span>9:41</span><div class="battery"><span></span></div></div>
-      <div class="between" style="padding:5px 20px 0"><b style="font-size:17px">Profil</b><div class="icon" style="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.22);color:#fff">⚙</div></div>
-      <div class="identity"><div class="avatar a4">MH</div><h2>Mia Hoffmann</h2><p>27 Jahre · Berlin, Mitte</p></div>
-    </div>
-    <div class="content">
-      <div class="stats card"><div class="stat"><b>3</b><p>Gruppen</p></div><div class="divider"></div><div class="stat"><b>9</b><p>Aktivitäten</p></div><div class="divider"></div><div class="stat"><b>24</b><p>Freunde</p></div></div>
-      <div class="card" style="margin-top:17px"><div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#8c958f">Über mich</div><p class="subtitle" style="margin-top:6px">Liebe ruhige Cafés, gute Bücher und lange Spaziergänge durch die Stadt. Suche Lernpartner und neue Leute mit echten Interessen.</p></div>
-      <div style="margin-top:17px"><div class="between"><h2 class="section-title">Meine Interessen</h2><span style="font-size:11px;color:#1f5c49;font-weight:800">Bearbeiten</span></div><div class="chips"><span class="chip">📷 Fotografie</span><span class="chip">📚 Bücherclub</span><span class="chip">☕ Café</span><span class="chip">🚶 Spaziergänge</span></div></div>
-      <div style="margin-top:17px"><h2 class="section-title">Erfolge</h2><div class="row gap8"><div class="card" style="flex:1;text-align:center;padding:11px"><div style="font-size:22px">🏅</div><b style="font-size:10px">Erste Aktivität</b></div><div class="card" style="flex:1;text-align:center;padding:11px"><div style="font-size:22px">👥</div><b style="font-size:10px">Social Starter</b></div><div class="card" style="flex:1;text-align:center;padding:11px"><div style="font-size:22px">♥</div><b style="font-size:10px">Stammgast</b></div></div></div>
-      <div class="settings" style="margin-top:17px"><h2 class="section-title">Einstellungen</h2><div class="card"><div class="setting"><span>○</span><b>Profil bearbeiten</b><span>›</span></div><div class="setting"><span>🔔</span><b>Benachrichtigungen</b><span>›</span></div><div class="setting"><span>🔒</span><b>Privatsphäre</b><span>›</span></div></div></div>
-    </div>
-    <div class="tabs"><div class="tab"><b>⌂</b>Home</div><div class="tab"><b>👥</b>Gruppen</div><div class="tab"><b>□</b>Aktivitäten</div><div class="tab"><b>♡</b>Kontakte</div><div class="tab active"><b>●</b>Profil</div></div>
-  </div>
-</section>
+          <div class="avatar-large"></div>
+          <div class="center-name">NeonBlade_X</div>
+          <div class="center-sub">Level 24 · Ranked aktiv</div>
 
+          <div class="profile-tags">
+            <span>Valorant</span><span>Duo Ranked</span><span>Voice</span>
+          </div>
+
+          <div class="info-box">
+            <p>
+              Kein Tilt, klare Calls, gerne 2–3 Runden nach Feierabend.
+            </p>
+          </div>
+
+          <div class="section-label">Aktuelles Game</div>
+          <div class="playing-box">
+            <div class="thumb"></div>
+            <div class="row-copy">
+              <strong>Valorant</strong>
+              <small>Ranked Duo · Gold 2</small>
+            </div>
+          </div>
+
+          <div class="section-label">Sucht</div>
+          <div class="chips" style="margin-top:0">
+            <span class="chip">Competitive</span>
+            <span class="chip">Voice Chat</span>
+          </div>
+
+          <div class="actions">
+            <div class="round-action"><span>×</span>Skip</div>
+            <div class="round-action"><span>✓</span>Like</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAME 7 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 7</h2>
+        <p>Match / Session</p>
+      </div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <div class="topline">
+            <span class="back">‹</span>
+            <span></span>
+          </div>
+
+          <div class="match-icon">⚡</div>
+          <div class="match-title">It’s a GG.</div>
+          <p class="match-sub">
+            Start gemeinsam ins Match: gleiche Cyber-Zeit direkt in deine gemeinsame Session vor.
+          </p>
+
+          <div class="details">
+            <h4>SESSION-VORSCHLAG</h4>
+            <div class="detail-row"><span>Game</span><span>Valorant</span></div>
+            <div class="detail-row"><span>Modus</span><span>Duo Ranked</span></div>
+            <div class="detail-row"><span>Zeit</span><span>Heute, 20:30</span></div>
+            <div class="detail-row"><span>Region</span><span>EU</span></div>
+            <div class="detail-row"><span>Voice</span><span>Discord</span></div>
+          </div>
+
+          <div class="button" style="margin-top:auto">Session annehmen</div>
+          <div class="button secondary">Andere Zeit vorschlagen</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAME 8 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 8</h2>
+        <p>Chat</p>
+      </div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+        <div class="screen">
+          <div class="topline">
+            <span class="back">‹</span>
+            <div class="chat-title">
+              <strong>NeonBlade_X</strong>
+              <small>Session bestätigt</small>
+            </div>
+            <span class="more">⋯</span>
+          </div>
+
+          <div class="messages">
+            <div class="message">
+              <div class="bubble">Heute 20:30?</div>
+              <span class="time">Valorant · Discord · Duo Ranked</span>
+            </div>
+
+            <div class="message mine">
+              <div class="bubble">Ja, perfekt. Ich bin 10 Minuten vorher online.</div>
+              <span class="time">20:16</span>
+            </div>
+
+            <div class="message">
+              <div class="bubble">Nice, ich schicke dir den Discord Invite.</div>
+              <span class="time">20:17</span>
+            </div>
+
+            <div class="message mine">
+              <div class="bubble">Deal. Kein Tilt, nur Calls 😄</div>
+              <span class="time">20:18</span>
+            </div>
+          </div>
+
+          <div class="composer">
+            Nachricht schreiben…
+            <span class="send">➤</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAME 9 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 9</h2>
+        <p>Explore / Discover</p>
+      </div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+
+        <div class="screen" style="padding-bottom:0">
+          <div class="topline">
+            <span class="back">‹</span>
+            <strong style="font-size:10px">Explore</strong>
+            <span class="more">▦</span>
+          </div>
+
+          <div class="search">⌕ Gamer, Games oder Rollen suchen</div>
+
+          <div class="chips" style="margin-top:10px">
+            <span class="chip">In deiner Nähe</span>
+            <span class="chip">Online</span>
+            <span class="chip">Aktiv</span>
+          </div>
+
+          <div class="list-title">Empfohlene Spieler</div>
+
+          <div class="player-row">
+            <div class="avatar-small"></div>
+            <div class="row-copy">
+              <strong>PixelWitch</strong>
+              <small>Apex · Support · 4,7 km</small>
+              <div class="mini-chips"><span class="mini-chip">Online</span><span class="mini-chip">Casual</span></div>
+            </div>
+            <div class="plus-square">+</div>
+          </div>
+
+          <div class="player-row">
+            <div class="avatar-small"></div>
+            <div class="row-copy">
+              <strong>CryptoKnight</strong>
+              <small>CS2 · Entry · 3,1 km</small>
+              <div class="mini-chips"><span class="mini-chip">2.300</span><span class="mini-chip">Ranked</span></div>
+            </div>
+            <div class="plus-square">+</div>
+          </div>
+
+          <div class="player-row">
+            <div class="avatar-small"></div>
+            <div class="row-copy">
+              <strong>RaidMira</strong>
+              <small>WoW · Healer · Clan offen</small>
+              <div class="mini-chips"><span class="mini-chip">LFG</span><span class="mini-chip">Raid</span></div>
+            </div>
+            <div class="plus-square">+</div>
+          </div>
+
+          <div class="list-title">Trending Games</div>
+
+          <div class="trending-row">
+            <div class="row-copy"><strong>Valorant</strong><small>12,4K Spieler online</small></div>
+            <span class="chevron">›</span>
+          </div>
+          <div class="trending-row">
+            <div class="row-copy"><strong>Apex Legends</strong><small>8,1K Spieler online</small></div>
+            <span class="chevron">›</span>
+          </div>
+          <div class="trending-row">
+            <div class="row-copy"><strong>League of Legends</strong><small>20,2K Spieler online</small></div>
+            <span class="chevron">›</span>
+          </div>
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item"><b>⌂</b>Home</div>
+          <div class="nav-item"><b>⌕</b>Explore</div>
+          <div class="nav-item"><b>●</b>Chat</div>
+          <div class="nav-item"><b>♙</b>Profil</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAME 10 -->
+    <section class="frame">
+      <div class="frame-label">
+        <h2>Frame 10</h2>
+        <p>User Profile</p>
+      </div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+
+        <div class="screen" style="padding-bottom:0">
+          <div class="topline">
+            <span></span>
+            <span class="edit">Edit</span>
+          </div>
+
+          <div class="user-avatar"></div>
+          <div class="center-name">xShadow_99</div>
+          <div class="center-sub">Level 12</div>
+
+          <div class="level-line"><span></span></div>
+          <div class="xp">2400 / 3600 XP</div>
+
+          <div class="section-label">Stats</div>
+          <div class="stats">
+            <div class="stat"><strong>12</strong><small>Matches</small></div>
+            <div class="stat"><strong>4,8</strong><small>Rating</small></div>
+            <div class="stat"><strong>7</strong><small>Sessions</small></div>
+          </div>
+
+          <div class="section-label">Badges</div>
+          <div class="badges">
+            <span class="badge"></span><span class="badge"></span><span class="badge"></span><span class="badge"></span>
+            <span class="badge-more">›</span>
+          </div>
+
+          <div class="section-label">Anti-Toxic-Code</div>
+          <div class="about">
+            Spieler können nach Sessions kurz bewerten: zuverlässig, freundlich, kommunikativ.
+          </div>
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item"><b>⌂</b>Home</div>
+          <div class="nav-item"><b>⌕</b>Explore</div>
+          <div class="nav-item"><b>●</b>Chat</div>
+          <div class="nav-item"><b>♙</b>Profil</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAME 11 -->
+    <section class="frame frame-11">
+      <div class="frame-label">
+        <h2>Frame 11</h2>
+        <p>Profil eines anderen Spielers</p>
+      </div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="status-icons">▮▮ ◔ ▰</span>
+        </div>
+
+        <div class="screen">
+          <div class="topline">
+            <span class="back">‹</span>
+            <span class="online-badge">Online</span>
+          </div>
+
+          <div class="user-avatar"></div>
+          <div class="center-name">xShadow_99</div>
+          <div class="center-sub">Mönchengladbach · Valorant · CS2 · Voice okay</div>
+
+          <div class="profile-tags">
+            <span>Level 12</span><span>PC</span><span>Europe</span><span>German</span>
+          </div>
+
+          <div class="section-label">Stats</div>
+          <div class="stats">
+            <div class="stat"><strong>12</strong><small>Matches</small></div>
+            <div class="stat"><strong>4,8</strong><small>Rating</small></div>
+            <div class="stat"><strong>7</strong><small>Sessions</small></div>
+          </div>
+
+          <div class="section-label">Badges</div>
+          <div class="badges">
+            <span class="badge"></span><span class="badge"></span><span class="badge"></span><span class="badge"></span>
+            <span class="badge-more">›</span>
+          </div>
+
+          <div class="section-label">Anti-Toxic-Code</div>
+          <div class="about">
+            Spieler können nach Sessions kurz bewerten: zuverlässig, freundlich, kommunikativ.
+          </div>
+
+          <div style="margin-top:auto">
+            <div class="button">Nachricht senden</div>
+            <div class="button secondary">Zum Spielen einladen</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 </div>
+
 </body>
 </html>
